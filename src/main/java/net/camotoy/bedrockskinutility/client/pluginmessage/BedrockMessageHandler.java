@@ -37,7 +37,7 @@ public final class BedrockMessageHandler {
 
         context.client().submit(() -> {
             // As of 1.17.1, identical identifiers do not result in multiple objects of the same type being registered
-            context.client().getTextureManager().register(payload.identifier(), new DynamicTexture(capeImage));
+            context.client().getTextureManager().register(payload.identifier(), new DynamicTexture(null, capeImage));
             applyCapeTexture(context.client().getConnection(), payload.playerUuid(), payload.identifier());
         });
     }
@@ -114,7 +114,7 @@ public final class BedrockMessageHandler {
 
         ResourceLocation identifier = ResourceLocation.fromNamespaceAndPath("geyserskinmanager", payload.playerUuid().toString());
         client.submit(() -> {
-            client.getTextureManager().register(identifier, new DynamicTexture(skinImage));
+            client.getTextureManager().register(identifier, new DynamicTexture(null, skinImage));
             applySkinTexture(client.getConnection(), payload.playerUuid(), identifier, renderer);
         });
     }
